@@ -3,11 +3,17 @@
  * –––––––––––––––––––––––––––––––––– */
 // Platform imports
 import React from 'react';
-import {Image, SafeAreaView, StyleSheet} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+} from 'react-native';
 
 // App imports
 import {usePokemonPaginated} from '~hooks/usePokemonPaginated';
-import {TypographyComponent} from '~components/TypographyComponent';
+import {FadeInImageComponent} from '~components/FadeInImageComponent';
 
 /* ––
  * –––– Screen definition
@@ -15,7 +21,13 @@ import {TypographyComponent} from '~components/TypographyComponent';
 export const HomeScreen = (): JSX.Element => {
   /* –– Hooks
    * –––––––––––––––––––––––––––––––––– */
-  const {pokemonList} = usePokemonPaginated();
+  const {pokemonList, loadPokemons} = usePokemonPaginated();
+
+  /* –– Helper methods
+   * –––––––––––––––––––––––––––––––––– */
+  const renderActivityIndicator = (): JSX.Element => (
+    <ActivityIndicator style={styles.loadingIndicator} size={20} color="grey" />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -24,9 +36,17 @@ export const HomeScreen = (): JSX.Element => {
         style={styles.pokeBallBackground}
       />
 
-      <TypographyComponent color="black" type="title">
-        Pokedex
-      </TypographyComponent>
+      <FlatList
+        data={pokemonList}
+        keyExtractor={pokemon => pokemon.id}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item}) => (
+          <FadeInImageComponent uri={item.picture} style={styles.avatar} />
+        )}
+        onEndReached={loadPokemons}
+        onEndReachedThreshold={0.4}
+        ListFooterComponent={renderActivityIndicator}
+      />
     </SafeAreaView>
   );
 };
@@ -45,5 +65,12 @@ const styles = StyleSheet.create({
     top: -100,
     right: -100,
     opacity: 0.2,
+  },
+  loadingIndicator: {
+    height: 100,
+  },
+  avatar: {
+    width: 100,
+    height: 100,
   },
 });

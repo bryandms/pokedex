@@ -28,16 +28,6 @@ export const usePokemonPaginated = () => {
 
   /* –– Helper methods
    * –––––––––––––––––––––––––––––––––– */
-  const loadPokemons = async (): Promise<void> => {
-    setIsLoading(true);
-    const response = await pokemonAPI.get<PokemonPaginatedResponse>(
-      nextPageURL.current,
-    );
-    nextPageURL.current = response.data.next;
-    mapPokemonList(response.data.results);
-    setIsLoading(false);
-  };
-
   const mapPokemonList = (pokemons: Result[]): void => {
     const newPokemonList: Pokemon[] = pokemons.map(({name, url}) => {
       const urlParts = url.split('/');
@@ -52,8 +42,19 @@ export const usePokemonPaginated = () => {
 
   /* –– Public API
    * –––––––––––––––––––––––––––––––––– */
+  const loadPokemons = async (): Promise<void> => {
+    setIsLoading(true);
+    const response = await pokemonAPI.get<PokemonPaginatedResponse>(
+      nextPageURL.current,
+    );
+    nextPageURL.current = response.data.next;
+    mapPokemonList(response.data.results);
+    setIsLoading(false);
+  };
+
   return {
     isLoading,
     pokemonList,
+    loadPokemons,
   };
 };
