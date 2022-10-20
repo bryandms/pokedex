@@ -6,12 +6,17 @@ import React from 'react';
 import {Image, SafeAreaView, StyleSheet} from 'react-native';
 
 // App imports
+import {usePokemonPaginated} from '~hooks/usePokemonPaginated';
 import {TypographyComponent} from '~components/TypographyComponent';
 
 /* ––
  * –––– Screen definition
  * –––––––––––––––––––––––––––––––––– */
 export const HomeScreen = (): JSX.Element => {
+  /* –– Hooks
+   * –––––––––––––––––––––––––––––––––– */
+  const {pokemonList} = usePokemonPaginated();
+
   return (
     <SafeAreaView style={styles.container}>
       <Image
