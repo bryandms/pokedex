@@ -8,6 +8,9 @@ import {Text} from 'react-native';
 // App imports
 import {colors, typography, ColorsTheme, TypographyTheme} from '~themes/fonts';
 
+/* ––
+ * –––– Types definition
+ * –––––––––––––––––––––––––––––––––– */
 type TypographyProps = React.ComponentProps<typeof Text> & {
   color?: keyof ColorsTheme;
   type?: keyof TypographyTheme;

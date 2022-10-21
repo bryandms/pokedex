@@ -26,7 +26,10 @@ interface FadeInImageProps {
 /* ––
  * –––– Component definition
  * –––––––––––––––––––––––––––––––––– */
-export const FadeInImageComponent = ({uri, style = {}}: FadeInImageProps) => {
+export const FadeInImageComponent = ({
+  uri,
+  style = {},
+}: FadeInImageProps): JSX.Element => {
   /* –– Hooks
    * –––––––––––––––––––––––––––––––––– */
   const {opacity, fadeIn} = useAnimation();

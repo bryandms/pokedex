@@ -6,9 +6,20 @@ import {useRef} from 'react';
 import {Animated} from 'react-native';
 
 /* ––
+ * –––– Interfaces definition
+ * –––––––––––––––––––––––––––––––––– */
+interface UseAnimationResponse {
+  opacity: Animated.Value;
+  position: Animated.Value;
+  fadeIn: (duration?: number) => void;
+  fadeOut: (duration?: number) => void;
+  startMovingPosition: (initPosition: number, duration?: number) => void;
+}
+
+/* ––
  * –––– Hook definition
  * –––––––––––––––––––––––––––––––––– */
-export const useAnimation = () => {
+export const useAnimation = (): UseAnimationResponse => {
   /* –– Hooks
    * –––––––––––––––––––––––––––––––––– */
   const opacity = useRef(new Animated.Value(0)).current;

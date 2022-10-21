@@ -13,9 +13,18 @@ import {
 import {pokemonAPI} from '~api/pokemonAPI';
 
 /* ––
+ * –––– Interfaces definition
+ * –––––––––––––––––––––––––––––––––– */
+interface UsePokemonPaginatedResponse {
+  isLoading: boolean;
+  pokemonList: Pokemon[];
+  loadPokemons: () => Promise<void>;
+}
+
+/* ––
  * –––– Hook definition
  * –––––––––––––––––––––––––––––––––– */
-export const usePokemonPaginated = () => {
+export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
   /* –– Hooks
    * –––––––––––––––––––––––––––––––––– */
   const [isLoading, setIsLoading] = useState(true);
@@ -30,15 +39,24 @@ export const usePokemonPaginated = () => {
    * –––––––––––––––––––––––––––––––––– */
   const mapPokemonList = (pokemons: Result[]): void => {
     const newPokemonList: Pokemon[] = pokemons.map(({name, url}) => {
-      const urlParts = url.split('/');
-      const id = urlParts[urlParts.length - 2];
-      const picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+      const id = getPokemonIdFromURL(url);
+      const picture = getPokemonImage(id);
 
       return {id, name, picture};
     });
 
     setPokemonList([...pokemonList, ...newPokemonList]);
   };
+
+  const getPokemonIdFromURL = (url: string): string => {
+    const urlParts = url.split('/');
+    const id = urlParts[urlParts.length - 2];
+
+    return id;
+  };
+
+  const getPokemonImage = (id: string): string =>
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 
   /* –– Public API
    * –––––––––––––––––––––––––––––––––– */

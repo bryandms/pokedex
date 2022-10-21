@@ -8,7 +8,7 @@ import {Text, View} from 'react-native';
 /* ––
  * –––– Screen definition
  * –––––––––––––––––––––––––––––––––– */
-export const PokemonScreen = () => {
+export const PokemonScreen = (): JSX.Element => {
   return (
     <View>
       <Text>PokemonScreen</Text>
