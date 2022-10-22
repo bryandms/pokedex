@@ -5,11 +5,7 @@
 import {useEffect, useRef, useState} from 'react';
 
 // App imports
-import {
-  Pokemon,
-  PokemonPaginatedResponse,
-  Result,
-} from '~interfaces/pokemonInterface';
+import {Pokemon, PokemonPaginatedResponse, Result} from '~interfaces/pokemon';
 import {pokemonAPI} from '~api/pokemonAPI';
 
 /* ––
@@ -29,11 +25,11 @@ export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
    * –––––––––––––––––––––––––––––––––– */
   const [isLoading, setIsLoading] = useState(true);
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
-  const nextPageURL = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
+  const nextPageURL = useRef('https://pokeapi.co/api/v2/pokemon?limit=10');
 
   useEffect(() => {
     loadPokemons();
-  }, []);
+  });
 
   /* –– Helper methods
    * –––––––––––––––––––––––––––––––––– */

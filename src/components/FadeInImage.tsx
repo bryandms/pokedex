@@ -26,7 +26,7 @@ interface FadeInImageProps {
 /* ––
  * –––– Component definition
  * –––––––––––––––––––––––––––––––––– */
-export const FadeInImageComponent = ({
+export const FadeInImage = ({
   uri,
   style = {},
 }: FadeInImageProps): JSX.Element => {

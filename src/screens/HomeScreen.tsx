@@ -9,11 +9,13 @@ import {
   Image,
   SafeAreaView,
   StyleSheet,
+  View,
 } from 'react-native';
 
 // App imports
 import {usePokemonPaginated} from '~hooks/usePokemonPaginated';
-import {FadeInImageComponent} from '~components/FadeInImageComponent';
+import {PokemonCard} from '~components/PokemonCard';
+import {Typography} from '~components/Typography';
 
 /* ––
  * –––– Screen definition
@@ -29,24 +31,32 @@ export const HomeScreen = (): JSX.Element => {
     <ActivityIndicator style={styles.loadingIndicator} size={20} color="grey" />
   );
 
+  const renderAppTitle = (): JSX.Element => (
+    <Typography type="title" style={styles.title}>
+      Pokedex
+    </Typography>
+  );
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <Image
-        source={require('~assets/pokebola.png')}
-        style={styles.pokeBallBackground}
+        source={require('~assets/pokeball.png')}
+        style={styles.pokeballBackground}
       />
 
-      <FlatList
-        data={pokemonList}
-        keyExtractor={pokemon => pokemon.id}
-        showsVerticalScrollIndicator={false}
-        renderItem={({item}) => (
-          <FadeInImageComponent uri={item.picture} style={styles.avatar} />
-        )}
-        onEndReached={loadPokemons}
-        onEndReachedThreshold={0.4}
-        ListFooterComponent={renderActivityIndicator}
-      />
+      <View style={styles.container}>
+        <FlatList
+          data={pokemonList}
+          keyExtractor={pokemon => pokemon.id}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          ListHeaderComponent={renderAppTitle}
+          renderItem={({item}) => <PokemonCard pokemon={item} />}
+          onEndReached={loadPokemons}
+          onEndReachedThreshold={0.4}
+          ListFooterComponent={renderActivityIndicator}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -56,9 +66,9 @@ export const HomeScreen = (): JSX.Element => {
  * –––––––––––––––––––––––––––––––––– */
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    alignItems: 'center',
   },
-  pokeBallBackground: {
+  pokeballBackground: {
     position: 'absolute',
     width: 300,
     height: 300,
@@ -66,11 +76,11 @@ const styles = StyleSheet.create({
     right: -100,
     opacity: 0.2,
   },
-  loadingIndicator: {
-    height: 100,
+  title: {
+    marginLeft: 10,
+    marginBottom: 10,
   },
-  avatar: {
-    width: 100,
+  loadingIndicator: {
     height: 100,
   },
 });

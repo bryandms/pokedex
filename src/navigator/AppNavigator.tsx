@@ -8,7 +8,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // App imports
-import {colors} from '~themes/fonts';
+import {colors} from '~themes/colors';
 import {HomeScreen} from '~screens/HomeScreen';
 import {PokemonScreen} from '~screens/PokemonScreen';
 

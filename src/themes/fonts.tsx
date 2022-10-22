@@ -14,21 +14,8 @@ export type TypographyTheme = {
 };
 
 /* ––
- * –––– Interfaces definition
- * –––––––––––––––––––––––––––––––––– */
-export interface ColorsTheme {
-  white: string;
-  black: string;
-}
-
-/* ––
  * –––– Constants definition
  * –––––––––––––––––––––––––––––––––– */
-export const colors: ColorsTheme = {
-  white: '#FFFFFF',
-  black: '#323232',
-};
-
 export const typography: TypographyTheme = {
   title: {
     fontSize: 32,
