@@ -49,7 +49,7 @@ export const PokemonCard = ({pokemon}: PokemonCardProps): JSX.Element => {
     return () => {
       isMounted.current = false;
     };
-  });
+  }, []);
 
   /* –– Helper methods
    * –––––––––––––––––––––––––––––––––– */

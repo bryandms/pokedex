@@ -25,11 +25,11 @@ export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
    * –––––––––––––––––––––––––––––––––– */
   const [isLoading, setIsLoading] = useState(true);
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
-  const nextPageURL = useRef('https://pokeapi.co/api/v2/pokemon?limit=10');
+  const nextPageURL = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
 
   useEffect(() => {
     loadPokemons();
-  });
+  }, []);
 
   /* –– Helper methods
    * –––––––––––––––––––––––––––––––––– */
@@ -57,6 +57,10 @@ export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
   /* –– Public API
    * –––––––––––––––––––––––––––––––––– */
   const loadPokemons = async (): Promise<void> => {
+    if (!nextPageURL.current) {
+      return;
+    }
+
     setIsLoading(true);
     const response = await pokemonAPI.get<PokemonPaginatedResponse>(
       nextPageURL.current,
