@@ -17,7 +17,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // App imports
-import {RootStackParams} from '~navigator/AppNavigator';
+import {PokemonStackParams} from '~navigator/PokemonStackNavigator';
 import {Typography} from '~components/Typography';
 import {FadeInImage} from '~components/FadeInImage';
 import {usePokemon} from '~hooks/usePokemon';
@@ -27,7 +27,7 @@ import {PokemonDetails} from '~components/PokemonDetails';
  * –––– Interfaces definition
  * –––––––––––––––––––––––––––––––––– */
 interface PokemonScreenProps
-  extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
+  extends StackScreenProps<PokemonStackParams, 'PokemonScreen'> {}
 
 /* ––
  * –––– Screen definition

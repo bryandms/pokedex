@@ -9,7 +9,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 // App imports
-import {AppNavigator} from '~navigator/AppNavigator';
+import {AppTabNavigator} from '~navigator/AppTabNavigator';
 
 /* ––
  * –––– Component definition
@@ -17,7 +17,7 @@ import {AppNavigator} from '~navigator/AppNavigator';
 const App = () => {
   return (
     <NavigationContainer>
-      <AppNavigator />
+      <AppTabNavigator />
     </NavigationContainer>
   );
 };

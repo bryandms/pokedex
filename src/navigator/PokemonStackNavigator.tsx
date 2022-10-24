@@ -16,7 +16,7 @@ import {PokemonScreen} from '~screens/PokemonScreen';
 /* ––
  * –––– Types definition
  * –––––––––––––––––––––––––––––––––– */
-export type RootStackParams = {
+export type PokemonStackParams = {
   HomeScreen: undefined;
   PokemonScreen: {
     pokemon: PokemonBase;
@@ -27,9 +27,9 @@ export type RootStackParams = {
 /* ––
  * –––– Navigator definition
  * –––––––––––––––––––––––––––––––––– */
-const Stack = createStackNavigator<RootStackParams>();
+const Stack = createStackNavigator<PokemonStackParams>();
 
-export const AppNavigator = (): JSX.Element => {
+export const PokemonStackNavigator = (): JSX.Element => {
   return (
     <Stack.Navigator
       screenOptions={{
