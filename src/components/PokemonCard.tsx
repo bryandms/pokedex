@@ -12,11 +12,12 @@ import {
 } from 'react-native';
 
 // Third-party imports
+import {useNavigation} from '@react-navigation/native';
 import ImageColors from 'react-native-image-colors';
 
 // App imports
-import {Pokemon} from '~interfaces/pokemon';
 import {colors} from '~themes/colors';
+import {PokemonBase} from '~interfaces/pokemon';
 import {Typography} from './Typography';
 import {FadeInImage} from './FadeInImage';
 
@@ -29,7 +30,7 @@ const windowWidth = Dimensions.get('window').width - 20;
  * –––– Interfaces definition
  * –––––––––––––––––––––––––––––––––– */
 interface PokemonCardProps {
-  pokemon: Pokemon;
+  pokemon: PokemonBase;
 }
 
 /* ––
@@ -40,6 +41,7 @@ export const PokemonCard = ({pokemon}: PokemonCardProps): JSX.Element => {
    * –––––––––––––––––––––––––––––––––– */
   const [backgroundColor, setBackgroundColor] = useState(colors.gray);
   const isMounted = useRef(true);
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (!isMounted) return;
@@ -62,8 +64,11 @@ export const PokemonCard = ({pokemon}: PokemonCardProps): JSX.Element => {
     setBackgroundColor(cardBackground || colors.gray);
   }, [pokemon.picture]);
 
+  const navigateToPokemon = () =>
+    navigation.navigate('PokemonScreen', {pokemon, color: backgroundColor});
+
   return (
-    <TouchableOpacity activeOpacity={0.5}>
+    <TouchableOpacity activeOpacity={0.5} onPress={navigateToPokemon}>
       <View style={styles.shadow} />
       <View style={{...styles.cardContainer, backgroundColor}}>
         <View>

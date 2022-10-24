@@ -5,7 +5,11 @@
 import {useEffect, useRef, useState} from 'react';
 
 // App imports
-import {Pokemon, PokemonPaginatedResponse, Result} from '~interfaces/pokemon';
+import {
+  PokemonBase,
+  PokemonPaginatedResponse,
+  Result,
+} from '~interfaces/pokemon';
 import {pokemonAPI} from '~api/pokemonAPI';
 
 /* ––
@@ -13,7 +17,7 @@ import {pokemonAPI} from '~api/pokemonAPI';
  * –––––––––––––––––––––––––––––––––– */
 interface UsePokemonPaginatedResponse {
   isLoading: boolean;
-  pokemonList: Pokemon[];
+  pokemonList: PokemonBase[];
   loadPokemons: () => Promise<void>;
 }
 
@@ -24,7 +28,7 @@ export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
   /* –– Hooks
    * –––––––––––––––––––––––––––––––––– */
   const [isLoading, setIsLoading] = useState(true);
-  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+  const [pokemonList, setPokemonList] = useState<PokemonBase[]>([]);
   const nextPageURL = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
 
   useEffect(() => {
@@ -34,7 +38,7 @@ export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
   /* –– Helper methods
    * –––––––––––––––––––––––––––––––––– */
   const mapPokemonList = (pokemons: Result[]): void => {
-    const newPokemonList: Pokemon[] = pokemons.map(({name, url}) => {
+    const newPokemonList: PokemonBase[] = pokemons.map(({name, url}) => {
       const id = getPokemonIdFromURL(url);
       const picture = getPokemonImage(id);
 

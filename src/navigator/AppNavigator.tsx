@@ -9,13 +9,25 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 // App imports
 import {colors} from '~themes/colors';
+import {PokemonBase} from '~interfaces/pokemon';
 import {HomeScreen} from '~screens/HomeScreen';
 import {PokemonScreen} from '~screens/PokemonScreen';
 
 /* ––
+ * –––– Types definition
+ * –––––––––––––––––––––––––––––––––– */
+export type RootStackParams = {
+  HomeScreen: undefined;
+  PokemonScreen: {
+    pokemon: PokemonBase;
+    color: string;
+  };
+};
+
+/* ––
  * –––– Navigator definition
  * –––––––––––––––––––––––––––––––––– */
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParams>();
 
 export const AppNavigator = (): JSX.Element => {
   return (
