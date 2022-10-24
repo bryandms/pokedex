@@ -2,7 +2,7 @@
 
 # Pokédex
 
-[About the Project](#about-the-project) | [How to Install](#how-to-install)
+[Acerca del proyecto](#acerca-del-proyecto) | [Instalar](#instalar)
 
 [:es:](README-ES.md) | [:us:](README.md)
 
@@ -12,28 +12,28 @@
   <img src="https://raw.githubusercontent.com/bryandms/pokedex/main/src/assets/demo.gif" alt="pokedex" height="500" />
 </h4>
 
-## About The Project
+## Acerca del proyecto
 
-Portable electronic encyclopedia of pokemon.
+Enciclopedia electrónica portátil de pokémon.
 
-**Built with:**
+**Construído con:**
 
 - [React Native](https://reactnative.dev/)
-- [PokéAPI](https://pokeapi.co/)
+- [Poké API](https://pokeapi.co/)
 - [Vector Icons](https://github.com/oblador/react-native-vector-icons)
-- And more...
+- Y más...
 
-## How to Install
+## Instalar
 
-**Step 1:** Clone or download the repo.
+**Paso 1:** Clone o descargue el repositorio.
 
-**Step 2:** Switch to your repository's directory.
+**Paso 2:** Cambie al directorio de su repositorio.
 
 ```bash
-cd /path/to/your/repo
+cd /ruta/de/su/repo
 ```
 
-**Step 3:** Install dependencies.
+**Paso 3:** Instale las dependencias.
 
 ```bash
 # NPM
@@ -43,7 +43,7 @@ npm i
 yarn
 ```
 
-**Step 4:** Start the project.
+**Paso 4:** Inicie el proyecto.
 
 ```bash
 # NPM
