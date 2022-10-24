@@ -46,7 +46,7 @@ export const SearchInput = ({
   return (
     <View style={[styles.textInputContainer, style]}>
       <TextInput
-        placeholder="Search pokemon..."
+        placeholder="Search pokemons..."
         style={styles.textInput}
         autoCapitalize="none"
         autoCorrect={false}

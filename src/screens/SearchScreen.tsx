@@ -10,6 +10,7 @@ import {
   FlatList,
   Dimensions,
   Platform,
+  Image,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -92,14 +93,24 @@ export const SearchScreen = (): JSX.Element => {
         }}
       />
 
-      <FlatList
-        data={filteredPokemon}
-        keyExtractor={pokemon => pokemon.id}
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        ListHeaderComponent={renderAppTitle}
-        renderItem={({item}) => <PokemonCard pokemon={item} />}
-      />
+      {filteredPokemon.length ? (
+        <FlatList
+          data={filteredPokemon}
+          keyExtractor={pokemon => pokemon.id}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          ListHeaderComponent={renderAppTitle}
+          renderItem={({item}) => <PokemonCard pokemon={item} />}
+        />
+      ) : (
+        <View style={styles.emptyStateContainer}>
+          <Image
+            source={require('~assets/search-empty-state.png')}
+            style={styles.imageEmptyState}
+          />
+          <Typography type="body">Search pokemons by name and id</Typography>
+        </View>
+      )}
     </View>
   );
 };
@@ -125,5 +136,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 999,
     width: screenWidth,
+  },
+  emptyStateContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageEmptyState: {
+    width: 200,
+    height: 200,
   },
 });
