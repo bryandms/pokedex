@@ -18,9 +18,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 // App imports
 import {PokemonStackParams} from '~navigator/PokemonStackNavigator';
+import {usePokemon} from '~hooks/usePokemon';
 import {Typography} from '~components/Typography';
 import {FadeInImage} from '~components/FadeInImage';
-import {usePokemon} from '~hooks/usePokemon';
 import {PokemonDetails} from '~components/PokemonDetails';
 
 /* ––

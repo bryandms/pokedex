@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 // App imports
 import {colors} from '~themes/colors';
 import {PokemonStackNavigator} from '~navigator/PokemonStackNavigator';
-import {SearchScreen} from '~screens/SearchScreen';
+import {SearchStackNavigator} from '~navigator/SearchStackNavigator';
 
 /* ––
  * –––– Navigator definition
@@ -50,8 +50,8 @@ export const AppTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="SearchScreen"
-        component={SearchScreen}
+        name="SearchStackNavigator"
+        component={SearchStackNavigator}
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({color}) => (

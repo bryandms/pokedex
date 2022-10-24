@@ -2,7 +2,7 @@
  * –––– Imports
  * –––––––––––––––––––––––––––––––––– */
 // Platform imports
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 // App imports
 import {PokemonBase, PokemonPaginatedResponse} from '~interfaces/pokemon';
@@ -12,21 +12,19 @@ import {pokemonAPI} from '~api/pokemonAPI';
 /* ––
  * –––– Interfaces definition
  * –––––––––––––––––––––––––––––––––– */
-interface UsePokemonPaginatedResponse {
+interface usePokemonSearchResponse {
   isLoading: boolean;
   pokemonList: PokemonBase[];
-  loadPokemons: () => Promise<void>;
 }
 
 /* ––
  * –––– Hook definition
  * –––––––––––––––––––––––––––––––––– */
-export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
+export const usePokemonSearch = (): usePokemonSearchResponse => {
   /* –– Hooks
    * –––––––––––––––––––––––––––––––––– */
   const [isLoading, setIsLoading] = useState(true);
   const [pokemonList, setPokemonList] = useState<PokemonBase[]>([]);
-  const nextPageURL = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
 
   useEffect(() => {
     loadPokemons();
@@ -35,15 +33,9 @@ export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
   /* –– Public API
    * –––––––––––––––––––––––––––––––––– */
   const loadPokemons = async (): Promise<void> => {
-    if (!nextPageURL.current) {
-      return;
-    }
-
-    setIsLoading(true);
     const response = await pokemonAPI.get<PokemonPaginatedResponse>(
-      nextPageURL.current,
+      'https://pokeapi.co/api/v2/pokemon?limit=1200',
     );
-    nextPageURL.current = response.data.next;
     const newPokemonList = mapPokemonList(response.data.results);
     setPokemonList([...pokemonList, ...newPokemonList]);
     setIsLoading(false);
@@ -52,6 +44,5 @@ export const usePokemonPaginated = (): UsePokemonPaginatedResponse => {
   return {
     isLoading,
     pokemonList,
-    loadPokemons,
   };
 };

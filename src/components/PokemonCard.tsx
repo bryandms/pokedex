@@ -18,8 +18,8 @@ import ImageColors from 'react-native-image-colors';
 // App imports
 import {colors} from '~themes/colors';
 import {PokemonBase} from '~interfaces/pokemon';
-import {Typography} from './Typography';
-import {FadeInImage} from './FadeInImage';
+import {Typography} from '~components/Typography';
+import {FadeInImage} from '~components/FadeInImage';
 
 /* ––
  * –––– Constants definition

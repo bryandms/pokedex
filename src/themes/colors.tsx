@@ -6,6 +6,7 @@ export interface ColorsTheme {
   black: string;
   gray: string;
   primary: string;
+  secondary: string;
 }
 
 /* ––
@@ -16,4 +17,5 @@ export const colors: ColorsTheme = {
   black: '#323232',
   gray: 'gray',
   primary: '#5856D6',
+  secondary: '#F3F1F3',
 };

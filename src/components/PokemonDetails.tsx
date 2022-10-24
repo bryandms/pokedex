@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   spacer: {
     marginTop: 380,
-    marginBottom: 30,
+    marginBottom: 90,
   },
   row: {
     flexDirection: 'row',
